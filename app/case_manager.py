@@ -1,3 +1,5 @@
+from evidence_manager import import_evidence
+
 def create_case():
     print("\n=== Create New Investigation ===")
 
@@ -31,7 +33,7 @@ def case_menu(case):
         choice = input("\nSelect an option: ").strip()
 
         if choice == "1":
-            print("\nImport Evidence coming in a future sprint.")
+            import_evidence()
 
         elif choice == "2":
             print("\nView Evidence coming in a future sprint.")
