@@ -1,4 +1,4 @@
-from case_manager import create_case
+from case_manager import create_case, case_menu
 from storage import save_case, list_cases
 
 
@@ -42,10 +42,7 @@ def view_cases():
         if 0 <= case_index < len(cases):
             selected_case = cases[case_index]["data"]
 
-            print("\n=== Investigation Case ===")
-            print(f"Name:     {selected_case['name']}")
-            print(f"Location: {selected_case['location']}")
-            print(f"Date:     {selected_case['date']}")
+            case_menu(selected_case)
         else:
             print("\nInvalid case selection.")
 
