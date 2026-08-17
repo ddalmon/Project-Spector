@@ -21,29 +21,36 @@ def import_evidence():
 
     if not evidence_path.exists():
         print("\nFolder not found.")
-        return
+        return []
 
     if not evidence_path.is_dir():
         print("\nPath is not a directory.")
-        return
+        return []
+
+    evidence_records = []
 
     print("\n=== Evidence Found ===")
 
-    found_files = 0
-
     for file in evidence_path.iterdir():
         if file.is_file():
-
             extension = file.suffix.lower()
 
             if extension in SUPPORTED_EXTENSIONS:
                 evidence_type = SUPPORTED_EXTENSIONS[extension]
 
+                evidence_record = {
+                    "name": file.name,
+                    "type": evidence_type,
+                    "path": str(file),
+                }
+
+                evidence_records.append(evidence_record)
+
                 print(
                     f"{evidence_type:<10} {file.name}"
                 )
 
-                found_files += 1
-
-    if found_files == 0:
+    if not evidence_records:
         print("No supported evidence files found.")
+
+    return evidence_records
